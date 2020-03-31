@@ -1,4 +1,7 @@
 .idea/
 /venv/
 settings.py
+local.py
+production.py
 .pytest_cache/
+__pycache__

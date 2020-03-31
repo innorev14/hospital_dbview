@@ -4,6 +4,7 @@ from . import views
 
 app_name = 'hospital'
 
-urlpattern = [
-    path('', views.KeywordView.as_view(), name='keyword')
+urlpatterns = [
+    # path('', views.KeywordView.as_view(), name='keyword'),
+    path('', views.keywordview, name='keyword_fbv')
 ]

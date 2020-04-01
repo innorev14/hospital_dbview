@@ -9,6 +9,9 @@ from django.db import models
 
 
 class Department(models.Model):
+    '''
+    dept :진료과
+    '''
     dept = models.CharField(primary_key=True, max_length=50)
 
     class Meta:
@@ -17,6 +20,10 @@ class Department(models.Model):
 
 
 class DeptAndKeyword(models.Model):
+    '''
+    dept_id : 진료과
+    name : 키워드
+    '''
     dept = models.ForeignKey(Department, models.DO_NOTHING, db_column='dept', primary_key=True)
     name = models.CharField(max_length=50)
 
@@ -27,6 +34,9 @@ class DeptAndKeyword(models.Model):
 
 
 class DepthOneKeyword(models.Model):
+    '''
+    name : 키워드
+    '''
     name = models.CharField(primary_key=True, max_length=50)
 
     class Meta:
@@ -35,6 +45,11 @@ class DepthOneKeyword(models.Model):
 
 
 class DepthOneRel(models.Model):
+    '''
+    keyword : 1차 키워드
+    relkeyword : 연관키워드
+    source : 출처
+    '''
     keyword = models.CharField(primary_key=True, max_length=50)
     relkeyword = models.CharField(max_length=50)
     source = models.CharField(max_length=50, blank=True, null=True)
@@ -46,6 +61,9 @@ class DepthOneRel(models.Model):
 
 
 class DepthThreeKeyword(models.Model):
+    '''
+    name : 연관키워드에 대한 연관 키워드
+    '''
     name = models.CharField(primary_key=True, max_length=50)
 
     class Meta:
@@ -54,6 +72,10 @@ class DepthThreeKeyword(models.Model):
 
 
 class DepthThreeRel(models.Model):
+    '''
+    keyword :  키워드
+    relkeyword : 연관키워드
+    '''
     keyword = models.CharField(primary_key=True, max_length=50)
     relkeyword = models.CharField(max_length=50)
     source = models.CharField(max_length=50, blank=True, null=True)
@@ -65,6 +87,9 @@ class DepthThreeRel(models.Model):
 
 
 class DepthTwoKeyword(models.Model):
+    '''
+    name : Deth2 키워드
+    '''
     name = models.CharField(primary_key=True, max_length=50)
 
     class Meta:
@@ -73,6 +98,11 @@ class DepthTwoKeyword(models.Model):
 
 
 class DepthTwoRel(models.Model):
+    '''
+    keyword : #키워드
+    relkeyword : 연관키워드
+    source : 출처
+    '''
     keyword = models.CharField(primary_key=True, max_length=50)
     relkeyword = models.CharField(max_length=50)
     source = models.CharField(max_length=50, blank=True, null=True)
@@ -84,6 +114,9 @@ class DepthTwoRel(models.Model):
 
 
 class ExcludeWord(models.Model):
+    '''
+    name : 제외키워드
+    '''
     name = models.CharField(primary_key=True, max_length=50)
 
     class Meta:
@@ -92,6 +125,9 @@ class ExcludeWord(models.Model):
 
 
 class GoogleKeyword(models.Model):
+    '''
+    name : 구글 키워드
+    '''
     name = models.CharField(primary_key=True, max_length=50)
 
     class Meta:
@@ -100,8 +136,12 @@ class GoogleKeyword(models.Model):
 
 
 class GoogleRelkeyword(models.Model):
+    '''
+    keyword : 구글 키워드
+    relkeyword : 구글 연관키워드
+    '''
     keyword = models.ForeignKey(GoogleKeyword, models.DO_NOTHING,
-                                db_column='keyword', primary_key=True, related_name='google_keyword')
+                                db_column='keyword', related_name='google_keyword', primary_key=True)
     relkeyword = models.ForeignKey(GoogleKeyword, models.DO_NOTHING,
                                    db_column='relkeyword', related_name='google_relkeyword')
 
@@ -158,6 +198,19 @@ class InstaHashtagInfo(models.Model):
 
 
 class JamesKeywordNaverapi(models.Model):
+    '''
+    date_id : 조회일자
+    keyword : 키워드
+    relkeyword : 연관키워드
+    pcclick : pc클릭수
+    mobileclick : 모바일 클릭수
+    pcadsclick : pc 광고클릭수
+    mobileadsclick : 모바일 광고클릭수
+    pcpercentage :
+    mobilepercentage :
+    avgdepth :
+    compidx : 경쟁도
+    '''
     date_id = models.IntegerField(primary_key=True)
     relkeyword = models.CharField(max_length=50)
     keyword = models.CharField(max_length=50)
@@ -177,6 +230,11 @@ class JamesKeywordNaverapi(models.Model):
 
 
 class JamesMainKeywordRel(models.Model):
+    '''
+    date_id : 조회일
+    main_keyword : 키워드
+    rel_keyword : 연관키워드
+    '''
     date_id = models.IntegerField(primary_key=True)
     main_keyword = models.CharField(max_length=50)
     relkeyword = models.CharField(max_length=50)
@@ -188,6 +246,9 @@ class JamesMainKeywordRel(models.Model):
 
 
 class Keyword(models.Model):
+    '''
+    name : 키워드
+    '''
     name = models.CharField(primary_key=True, max_length=50)
 
     class Meta:
@@ -196,6 +257,12 @@ class Keyword(models.Model):
 
 
 class ViewCountDevice(models.Model):
+    '''
+    date_id : 조회일
+    name : 키워드
+    pc : pc조회수
+    mobile : 모바일조회수
+    '''
     date_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50)
     pc = models.IntegerField(blank=True, null=True)

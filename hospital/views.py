@@ -18,5 +18,9 @@ class MyManager(models.Manager):
 
 def keywordview(request):
     dept = Department.objects.using('read1').values()
-    context = {'dept': dept}
-    return HttpResponse(request, 'hospital/department_list.html', dept)
+    dept_keyword = DeptAndKeyword.objects.using('read1').all()
+    context = {
+        'dept': dept,
+        'dept_keyword': dept_keyword,
+    }
+    return render(request, 'hospital/department_list.html', context=context)

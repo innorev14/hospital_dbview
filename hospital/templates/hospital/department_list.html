@@ -5,8 +5,27 @@
     <title>Title</title>
 </head>
 <body>
-    {% for item in dept %}
-        {{ item.dept }}
+{#        <select id="{{ dept_keyword.dept_id }}" name="club" class="form-control">#}
+{#          <option value="None"></option>#}
+{#        {% for item in dept_keyword %}#}
+{#          <option value="{{ item.name }}" selected="selected">{{ item.dept }}</option>#}
+{#          {% endfor %}#}
+{#        </select>#}
+{% for item in dept %}
+    {{ item.dept }}
+{% endfor %}
+<table>
+    <thead>
+    <th>과</th>
+    <th>키워드</th>
+    </thead>
+    {% for item in dept_keyword %}
+        <tbody>
+        <td>{{ item.dept_id }}</td>
+        <td>{{ item.name }}</td>
+        </tbody>
     {%  endfor %}
+</table>
+
 </body>
 </html>

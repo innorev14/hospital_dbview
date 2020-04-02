@@ -1,10 +1,13 @@
 import random
+
+
 class MasterSlaveRouter:
+
     def db_for_read(self, model, **hints):
-        return random.choice('[read1,read2]')
+        return random.choice(['read1', 'read2'])
 
     def db_for_write(self, model, **hints):
-        return 'default'
+        return 'master'
 
     def allow_relation(self, obj1, obj2, **hints):
         db_list = ('master', 'read1', 'read2')
@@ -12,5 +15,5 @@ class MasterSlaveRouter:
             return True
         return None
 
-    def allow_migrate(selfself, db, app_label, model_name_name=None, **hints):
+    def allow_migrate(self, db, app_label, model_name=None, **hints):
         return True

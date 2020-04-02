@@ -5,15 +5,25 @@
     <title>Title</title>
 </head>
 <body>
-{#        <select id="{{ dept_keyword.dept_id }}" name="club" class="form-control">#}
-{#          <option value="None"></option>#}
-{#        {% for item in dept_keyword %}#}
-{#          <option value="{{ item.name }}" selected="selected">{{ item.dept }}</option>#}
-{#          {% endfor %}#}
-{#        </select>#}
-{% for item in dept %}
-    {{ item.dept }}
-{% endfor %}
+
+            <form action="{% url 'hospital:keyword_fbv' %}" method="GET" class="">
+                <input type="text" name="q" placeholder="키워드를 입력하세요" class="">
+                <button class="" type="submit">검색</button>
+            </form>
+<br/>
+            {{ dept.values }}
+            <br/>
+<select id="keyword-select" onchange="location = this.value;">
+    <option value="" selected="selected">------dept-------</option>
+    {% for item in dept %}
+        <option value="?dept={{ item.dept }}" selected="selected">{{ item.dept }}</option>
+    {% endfor %}
+</select>
+
+
+
+
+
 <table>
     <thead>
     <th>과</th>
@@ -27,5 +37,35 @@
     {%  endfor %}
 </table>
 
+{{ rel_keyword }}
+<br />
+<table>
+    <thead>
+    <th>조회일</th>
+    <th>키워드</th>
+        <th>연관키워드</th>
+<th>pc클릭수</th>
+    <th>모바일클릭수</th>
+    <th>pc비율</th>
+    <th>모바일비율</th>
+    <th>평균</th>
+    <th>경쟁도</th>
+    </thead>
+    {% for item in naverapi %}
+        <tbody>
+        <td>{{ item.date_id }}</td>
+        <td>{{ item.keyword }}</td>
+                <td>{{ item.relkeyword }}</td>
+                <td>{{ item.pcclick }}</td>
+        <td>{{ item.mobileclick }}</td>
+        <td>{{ item.pcadsclick }}</td>
+        <td>{{ item.mobileadsclick }}</td>
+        <td>{{ item.pcpercentage }}</td>
+        <td>{{ item.mobilepercentage }}</td>
+        <td>{{ item.avgdepth }}</td>
+        <td>{{ item.compidx }}</td>
+        </tbody>
+    {%  endfor %}
+</table>
 </body>
 </html>

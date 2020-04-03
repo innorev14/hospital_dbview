@@ -13,7 +13,7 @@
 <br/>
 
 <br/>
-<h1>DeptAndKeyword</h1>
+<h1>DeptAndKeyword({{ dept_count }})</h1>
 <select id="keyword-select" onchange="location = this.value;">
     {% for item in dept %}
         <option value="?dept={{ item.dept }}" selected="selected">{{ item.dept }}</option>
@@ -29,7 +29,7 @@
     </tbody>
 </table>
 
-<h1>DepthOneKeyword</h1>
+<h1>DepthOneKeyword({{ depth1_count }})</h1>
 {% regroup keyword by depth1_rel as depth1_list %}
 
 <ul>
@@ -58,7 +58,7 @@
 {#    </tbody>#}
 {#</table>#}
 
-{#<h1>DepthTwoKeyword</h1>#}
+<h1>DepthTwoKeyword({{ depth2_count }})</h1>
 {#<select id="keyword-dept2" onchange="location = this.value;">#}
 {#    {% for item in depth_two %}#}
 {#        <option value="?depth2={{ item.name }}" selected="selected">{{ item.name }}</option>#}
@@ -74,7 +74,7 @@
 {#    </tbody>#}
 {#</table>#}
 {##}
-{#<h1>DepthThreeKeyword</h1>#}
+<h1>DepthThreeKeyword({{ depth3_count }})</h1>
 {#<select id="keyword-dept3" onchange="location = this.value;">#}
 {#    {% for item in depth_three %}#}
 {#        <option value="?depth3={{ item.name }}" selected="selected">{{ item.name }}</option>#}
@@ -91,7 +91,7 @@
 {#</table>#}
 
 <br />
-<h1>JamesKeywordNaverapi</h1>
+<h1>JamesKeywordNaverapi({{ rel_keyword_count }})</h1>
 <table>
     <thead>
     <th>조회일</th>

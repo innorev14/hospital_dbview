@@ -38,6 +38,9 @@ def keywordview(request):
         naverapi = JamesKeywordNaverapi.objects.filter(Q(relkeyword=req_keyword)).order_by('-mobileclick')
         rel_keyword_count = JamesKeywordNaverapi.objects.count()
 
+        view_device = ViewCountDevice.objects.all()
+        view_device_count = ViewCountDevice.objects.all().count()
+
         context = {
             'dept': dept,
             'dept_keyword': dept_keyword,
@@ -54,6 +57,8 @@ def keywordview(request):
             'depth_three': depth_three,
             'depth3_rel': depth3_rel,
             'depth3_count': depth3_count,
+            'view_device_count': view_device_count,
+            'view_device': view_device,
         }
         return render(request, template_name='hospital/department_list.html', context=context)
 

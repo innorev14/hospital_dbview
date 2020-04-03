@@ -23,7 +23,7 @@
 </select>
 <table>
     <thead>
-    <th>키워드</th>
+    <th>키워드({{ dept_keyword.values|length }})</th>
     </thead>
     <tbody>
     <td>{% for item in dept_keyword %}{{ item.name }},&nbsp;{%  endfor %}</td>
@@ -31,6 +31,7 @@
 </table>
 
 <h1>DepthOneKeyword({{ depth1_count }})</h1>
+{{ depth_one }}
 {% regroup keyword by depth1_rel as depth1_list %}
 
 <ul>
@@ -60,6 +61,7 @@
 {#</table>#}
 
 <h1>DepthTwoKeyword({{ depth2_count }})</h1>
+{{ depth_two }}
 {#<select id="keyword-dept2" onchange="location = this.value;">#}
 {#    {% for item in depth_two %}#}
 {#        <option value="?depth2={{ item.name }}" selected="selected">{{ item.name }}</option>#}
@@ -76,6 +78,7 @@
 {#</table>#}
 {##}
 <h1>DepthThreeKeyword({{ depth3_count }})</h1>
+{{ depth_three }}
 {#<select id="keyword-dept3" onchange="location = this.value;">#}
 {#    {% for item in depth_three %}#}
 {#        <option value="?depth3={{ item.name }}" selected="selected">{{ item.name }}</option>#}
@@ -121,5 +124,8 @@
         </tbody>
     {%  endfor %}
 </table>
+
+<h1>ViewCountDevice({{ view_device_count }})</h1>
+{{ view_device.values }}
 </body>
 </html>

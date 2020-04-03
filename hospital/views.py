@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -20,7 +21,8 @@ def keywordview(request):
 
         req_depth1 = request.GET.get('depth1', '')
         depth_one = DepthOneKeyword.objects.all()
-        depth1_rel = DepthOneRel.objects.filter(Q(keyword=req_depth1)).order_by('relkeyword')
+        depth1_rel = DepthOneRel.objects.order_by('relkeyword')
+        # depth1_rel = DepthOneRel.objects.filter(Q(keyword=req_depth1)).order_by('relkeyword')
         depth1_count = DepthOneRel.objects.count()
 
         req_depth2 = request.GET.get('depth2', '')
@@ -41,6 +43,15 @@ def keywordview(request):
         view_device = ViewCountDevice.objects.all()
         view_device_count = ViewCountDevice.objects.all().count()
 
+        view_deviced3 = ViewCountDeviceD3.objects.all()
+        view_deviced3_count = ViewCountDeviceD3.objects.all().count()
+
+        view_genderage_count = ViewCountGenderAge.objects.all().count()
+        view_genderage = ViewCountGenderAge.objects.all()
+
+        view_genderaged3_count = ViewCountGenderAge.objects.all().count()
+        view_genderaged3 = ViewCountGenderAge.objects.all()
+
         context = {
             'dept': dept,
             'dept_keyword': dept_keyword,
@@ -59,6 +70,12 @@ def keywordview(request):
             'depth3_count': depth3_count,
             'view_device_count': view_device_count,
             'view_device': view_device,
+            'view_deviced3_count': view_deviced3_count,
+            'view_deviced3': view_deviced3,
+            'view_genderage_count': view_genderage_count,
+            'view_genderage': view_genderage,
+            'view_genderaged3_count': view_genderaged3_count,
+            'view_genderaged3': view_genderaged3,
         }
         return render(request, template_name='hospital/department_list.html', context=context)
 

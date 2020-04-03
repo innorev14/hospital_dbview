@@ -31,14 +31,13 @@
 </table>
 
 <h1>DepthOneKeyword({{ depth1_count }})</h1>
-{{ depth_one }}
+{{ depth_one.values }}
 {% regroup keyword by depth1_rel as depth1_list %}
-
 <ul>
-{% for keyword in depth1_list %}
-    <li>{{ keyword.grouper }}
+{% for depth1_list.keyword in depth1_list %}
+    <li>{{ depth1_list.keyword.grouper }}
     <ul>
-        {% for rel in country.list %}
+        {% for rel in keyword.list %}
           <li>{{ rel.relkeyword }}</li>
         {% endfor %}
     </ul>
@@ -61,7 +60,7 @@
 {#</table>#}
 
 <h1>DepthTwoKeyword({{ depth2_count }})</h1>
-{{ depth_two }}
+{{ depth_two.values }}
 {#<select id="keyword-dept2" onchange="location = this.value;">#}
 {#    {% for item in depth_two %}#}
 {#        <option value="?depth2={{ item.name }}" selected="selected">{{ item.name }}</option>#}
@@ -78,7 +77,7 @@
 {#</table>#}
 {##}
 <h1>DepthThreeKeyword({{ depth3_count }})</h1>
-{{ depth_three }}
+{{ depth_three.values }}
 {#<select id="keyword-dept3" onchange="location = this.value;">#}
 {#    {% for item in depth_three %}#}
 {#        <option value="?depth3={{ item.name }}" selected="selected">{{ item.name }}</option>#}
@@ -127,5 +126,17 @@
 
 <h1>ViewCountDevice({{ view_device_count }})</h1>
 {{ view_device.values }}
+
+<h1>view_deviced3_count({{ view_deviced3_count }})</h1>
+{{ view_deviced3.values }}
+
+<h1>ViewCountGenderAge({{ view_genderage_count }})</h1>
+{{ view_genderage.values }}
+
+<h1>ViewCountGenderAgeD3({{ view_genderaged3_count }})</h1>
+{{ view_genderaged3.values }}
+
+
+
 </body>
 </html>

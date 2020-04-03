@@ -30,20 +30,33 @@
 </table>
 
 <h1>DepthOneKeyword</h1>
-<select id="keyword-dept1" onchange="location = this.value;">
-    {% for item in depth_one %}
-        <option value="?depth1={{ item.name }}" selected="selected">{{ item.name }}</option>
-    {% endfor %}
-    <option value="" selected="selected">-----depth1------</option>
-</select>
-<table>
-    <thead>
-    <th>키워드</th>
-    </thead>
-    <tbody>
-    <td>{% for item in depth1_rel %}{{ item.relkeyword }},&nbsp;{%  endfor %}</td>
-    </tbody>
-</table>
+{% regroup keyword by depth1_rel as depth1_list %}
+
+<ul>
+{% for keyword in depth1_list %}
+    <li>{{ keyword.grouper }}
+    <ul>
+        {% for rel in country.list %}
+          <li>{{ rel.relkeyword }}</li>
+        {% endfor %}
+    </ul>
+    </li>
+{% endfor %}
+</ul>
+{#<select id="keyword-dept1" onchange="location = this.value;">#}
+{#    {% for item in depth_one %}#}
+{#        <option value="?depth1={{ item.name }}" selected="selected">{{ item.name }}</option>#}
+{#    {% endfor %}#}
+{#    <option value="" selected="selected">-----depth1------</option>#}
+{#</select>#}
+{#<table>#}
+{#    <thead>#}
+{#    <th>키워드</th>#}
+{#    </thead>#}
+{#    <tbody>#}
+{#    <td>{% for item in depth1_rel %}{{ item.relkeyword }},&nbsp;{%  endfor %}</td>#}
+{#    </tbody>#}
+{#</table>#}
 
 {#<h1>DepthTwoKeyword</h1>#}
 {#<select id="keyword-dept2" onchange="location = this.value;">#}

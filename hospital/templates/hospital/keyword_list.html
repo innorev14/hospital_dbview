@@ -1,3 +1,4 @@
+{% load humanize %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,71 @@
     <title>Title</title>
 </head>
 <body>
-    {{ object_list }}
+        <div class="column">
+            <form action="" method="get">
+                <div class="columns">
+                    <div class="column is-2">
+                        <input class="input is-success" type="text" name="q" value="{{ q }}">
+                    </div>
+                    <div class="column is-1">
+                        <input class="button is-primary" type="submit" value="검색">
+                    </div>
+                </div>
+            </form>
+
+<table>
+    <thead>
+    <th>조회일</th>
+    <th>키워드</th>
+        <th>연관키워드</th>
+<th>pc클릭수</th>
+    <th>모바일클릭수</th>
+    <th>pc월평균클릭</th>
+    <th>모바일월평균클릭</th>
+    <th>pc월평균클릭률</th>
+    <th>모바일월평균클릭률</th>
+    <th>월평균노출광고수</th>
+    <th>경쟁도</th>
+    </thead>
+    {% for item in object_list %}
+        <tbody>
+        <td>{{ item.date_id }}</td>
+        <td>{{ item.keyword }}</td>
+                <td>{{ item.relkeyword }}</td>
+                <td>{{ item.pcclick|intcomma }}</td>
+        <td>{{ item.mobileclick|intcomma }}</td>
+        <td>{{ item.pcadsclick|intcomma }}</td>
+        <td>{{ item.mobileadsclick }}</td>
+        <td>{{ item.pcpercentage }}</td>
+        <td>{{ item.mobilepercentage }}</td>
+        <td>{{ item.avgdepth }}</td>
+        <td>{{ item.compidx }}</td>
+        </tbody>
+    {%  endfor %}
+</table>
+
+            {% if is_paginated %}
+            <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                {% if page_obj.has_previous %}
+                <a class="pagination-previous" href="?page={{ page_obj.previous_page_number }}">이전</a>
+                {% else %}
+                <li class="pagination-previous" disabled><span>이전</span></li>
+                {% endif %}
+                <ul class="pagination-list">
+                    {% for i in paginator.page_range %}
+                    {% if page_obj.number == i %}
+                    <li class="active"><span class="pagination-link is-current">{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                    <a href="?page={{ i }}" class="pagination-link">{{ i }}</a>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+                {% if page_obj.has_next %}
+                <a class="pagination-next" href="?page={{ page_obj.next_page_number }}">다음</a>
+                {% else %}
+                <li class="pagination-next" disabled><span>다음</span></li>
+                {% endif %}
+            </nav>
+            {% endif %}
 </body>
 </html>

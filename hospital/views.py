@@ -9,6 +9,21 @@ from .models import *
 class KeywordView(ListView):
     model = DeptAndKeyword
     template_name = 'hospital/keyword_list.html'
+    paginate_by = 100
+
+    def get_queryset(self, *args, **kwargs):
+        qs = JamesKeywordNaverapi.objects.all().order_by('-mobileclick')
+        query = self.request.GET.get("q", None)
+        if query is not None:
+            q = qs.filter(Q(keyword=query))
+        else:
+            q = qs
+        return q
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(KeywordView, self).get_context_data(*args, **kwargs)
+        return context
+
 
 def keywordview(request):
     if request.method == "GET":

@@ -14,7 +14,7 @@
 <br/>
 
 <br/>
-<h1>DeptAndKeyword({{ dept_count }})</h1>
+<h1>DeptAndKeyword({{ dept_count|intcomma }})</h1>
 <select id="keyword-select" onchange="location = this.value;">
     {% for item in dept %}
         <option value="?dept={{ item.dept }}" selected="selected">{{ item.dept }}</option>
@@ -30,7 +30,7 @@
     </tbody>
 </table>
 
-<h1>DepthOneKeyword({{ depth1_count }})</h1>
+<h1>DepthOneKeyword({{ depth1_count|intcomma }})</h1>
 {{ depth_one.values }}
 {% regroup keyword by depth1_rel as depth1_list %}
 <ul>
@@ -59,7 +59,7 @@
 {#    </tbody>#}
 {#</table>#}
 
-<h1>DepthTwoKeyword({{ depth2_count }})</h1>
+<h1>DepthTwoKeyword({{ depth2_count|intcomma }})</h1>
 {{ depth_two.values }}
 {#<select id="keyword-dept2" onchange="location = this.value;">#}
 {#    {% for item in depth_two %}#}
@@ -76,7 +76,7 @@
 {#    </tbody>#}
 {#</table>#}
 {##}
-<h1>DepthThreeKeyword({{ depth3_count }})</h1>
+<h1>DepthThreeKeyword({{ depth3_count|intcomma }})</h1>
 {{ depth_three.values }}
 {#<select id="keyword-dept3" onchange="location = this.value;">#}
 {#    {% for item in depth_three %}#}
@@ -94,7 +94,7 @@
 {#</table>#}
 
 <br />
-<h1>JamesKeywordNaverapi({{ rel_keyword_count }})</h1>
+<h1>JamesKeywordNaverapi({{ rel_keyword_count|intcomma }})</h1>
 <table>
     <thead>
     <th>조회일</th>
@@ -124,16 +124,16 @@
     {%  endfor %}
 </table>
 
-<h1>ViewCountDevice({{ view_device_count }})</h1>
+<h1>ViewCountDevice({{ view_device_count|intcomma }})</h1>
 {{ view_device.values }}
 
-<h1>view_deviced3_count({{ view_deviced3_count }})</h1>
+<h1>view_deviced3_count({{ view_deviced3_count|intcomma }})</h1>
 {{ view_deviced3.values }}
 
-<h1>ViewCountGenderAge({{ view_genderage_count }})</h1>
+<h1>ViewCountGenderAge({{ view_genderage_count|intcomma }})</h1>
 {{ view_genderage.values }}
 
-<h1>ViewCountGenderAgeD3({{ view_genderaged3_count }})</h1>
+<h1>ViewCountGenderAgeD3({{ view_genderaged3_count|intcomma }})</h1>
 {{ view_genderaged3.values }}
 
 
